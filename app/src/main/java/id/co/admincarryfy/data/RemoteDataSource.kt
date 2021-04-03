@@ -1,5 +1,7 @@
 package id.co.admincarryfy.data
 
+import id.co.admincarryfy.data.model.Home
+import id.co.admincarryfy.data.model.ResponseItem
 import id.co.admincarryfy.data.model.Value
 import retrofit2.Response
 import java.time.temporal.TemporalQueries
@@ -11,4 +13,9 @@ class RemoteDataSource @Inject constructor(
     suspend fun loginAdminRequest(username: String, password: String): Response<Value>{
         return apiService.loginAdminRequest(username, password)
     }
+
+    suspend fun getHomeRequest(): Response<ResponseItem<Home>>{
+        return apiService.getHomeDriver()
+    }
+
 }

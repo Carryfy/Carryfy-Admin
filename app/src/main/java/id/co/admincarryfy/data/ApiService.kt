@@ -1,11 +1,8 @@
 package id.co.admincarryfy.data
 
-import id.co.admincarryfy.data.model.Value
+import id.co.admincarryfy.data.model.*
 import retrofit2.Response
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.QueryMap
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -15,5 +12,13 @@ interface ApiService {
         @Field("username") username: String,
         @Field("password") password: String
     ):Response<Value>
+
+    @GET("home_driver.php")
+    suspend fun getHomeDriver(): Response<ResponseItem<Home>>
+
+    @GET("tampil_pesanan_user.php")
+    suspend fun getPesananUser(
+        @Query("tanggal") tanggal: String
+    ): Response<ResponseList<Pesanan>>
 
 }
