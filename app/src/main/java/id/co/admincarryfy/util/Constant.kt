@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.text.format.DateFormat
+import java.util.*
 
 class Constant {
     companion object{
@@ -26,6 +28,22 @@ class Constant {
             return false
         }
 
+        fun getdateToday(): String{
+            val cFirst = Calendar.getInstance()
+
+            cFirst.set(Calendar.HOUR_OF_DAY, 0)
+            cFirst.set(Calendar.MINUTE, 0)
+            cFirst.set(Calendar.SECOND, 0)
+            val firstDate = DateFormat.format("yyyy-MM-dd HH:mm:ss", cFirst).toString()
+
+            cFirst.set(Calendar.HOUR_OF_DAY, 23)
+            cFirst.set(Calendar.MINUTE, 59)
+            cFirst.set(Calendar.SECOND, 59)
+            val endDate = DateFormat.format("yyyy-MM-dd HH:mm:ss", cFirst).toString()
+
+            return firstDate+"_"+endDate
+
+        }
 
     }
 }

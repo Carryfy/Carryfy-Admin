@@ -2,12 +2,13 @@ package id.co.admincarryfy.ui.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.viewbinding.library.activity.viewBinding
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
+import id.co.admincarryfy.DataBinderMapperImpl
 import id.co.admincarryfy.R
 import id.co.admincarryfy.databinding.ActivityLoginBinding
 import id.co.admincarryfy.util.Resource
@@ -17,12 +18,12 @@ import id.co.admincarryfy.viewmodel.LoginViewModel
 class LoginActivity : AppCompatActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
-    private val dataBinding: ActivityLoginBinding by viewBinding()
+    private lateinit var dataBinding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
 
         viewModel.getLoginAdminResponse.observe(this, Observer { response ->
             when(response){

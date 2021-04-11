@@ -1,26 +1,40 @@
 package id.co.admincarryfy.ui.adapter
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import id.co.admincarryfy.R
+import id.co.admincarryfy.data.model.Pesanan
 import id.co.admincarryfy.databinding.ItemPesananBinding
+import id.co.admincarryfy.util.DiffUtilCustom
 
 class PesananHomeAdapter(val context: Context): RecyclerView.Adapter<PesananHomeAdapter.ViewHolder>() {
 
-
+    private var dataPesananList = emptyList<Pesanan>()
+    
 
     inner class ViewHolder(val dataBinding: ItemPesananBinding): RecyclerView.ViewHolder(dataBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        TODO("Not yet implemented")
+        val inflater = LayoutInflater.from(parent.context)
+        val dataBinding: ItemPesananBinding = DataBindingUtil.inflate(inflater, R.layout.item_pesanan, parent, false)
+        return ViewHolder(dataBinding)
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount(): Int = dataPesananList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.dataBinding.pesanan = dataPesananList[position]
+    }
+
+    fun setData(newData: List<Pesanan>){
+        val diffUtilCustom = DiffUtilCustom(dataPesananList, newData)
+        val diffUtilResult = DiffUtil.calculateDiff(diffUtilCustom)
+        dataPesananList = newData
+        diffUtilResult.dispatchUpdatesTo(this)
     }
 
 }

@@ -12,4 +12,8 @@ class Value {
     @Expose
     var message: String ?= ""
 
+    @SerializedName("id_driver")
+    @Expose
+    var id_driver: String ?= ""
+
 }

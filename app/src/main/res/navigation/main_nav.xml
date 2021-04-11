@@ -10,4 +10,23 @@
         android:name="id.co.admincarryfy.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/driverFragment"
+        android:name="id.co.admincarryfy.ui.DriverFragment"
+        android:label="DriverFragment"
+        tools:layout="@layout/fragment_driver" >
+        <action
+            android:id="@+id/action_driverFragment_to_addDriverActivity"
+            app:destination="@id/addDriverActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/addDriverActivity"
+        android:name="id.co.admincarryfy.ui.driver.AddDriverActivity"
+        android:label="AddDriverActivity"
+        tools:layout="@layout/activity_add_driver"  />
+    <activity
+        android:id="@+id/addPerjalananDriverActivity"
+        android:name="id.co.admincarryfy.ui.driver.AddPerjalananDriverActivity"
+        android:label="AddPerjalananDriverActivity"
+        tools:layout="@layout/activity_add_perjalanan_driver"  />
 </navigation>
