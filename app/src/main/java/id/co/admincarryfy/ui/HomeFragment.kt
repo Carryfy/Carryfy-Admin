@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -53,6 +54,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     response.data.let {
                         setDataOrder(it?.data)
                     }
+                }
+                is Resource.Error ->{
+                    Toast.makeText(context, "${response.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         })

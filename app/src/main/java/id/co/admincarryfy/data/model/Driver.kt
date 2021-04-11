@@ -1,5 +1,7 @@
 package id.co.admincarryfy.data.model
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Driver (
@@ -27,4 +29,48 @@ data class Driver (
     var tokenFirebase: String ?= "",
     @SerializedName("deposit")
     var deposit: String ?= ""
-)
+): Parcelable {
+    constructor(parcel: Parcel) : this(
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString(),
+            parcel.readString()) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(namaDriver)
+        parcel.writeString(noHpUtama)
+        parcel.writeString(noHpCadangan)
+        parcel.writeString(jenisKelamin)
+        parcel.writeString(noKtpSim)
+        parcel.writeString(merkKendaraan)
+        parcel.writeString(warnaKendaraan)
+        parcel.writeString(platKendaraan)
+        parcel.writeString(lokasiTerkini)
+        parcel.writeString(kursiKosong)
+        parcel.writeString(tokenFirebase)
+        parcel.writeString(deposit)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Driver> {
+        override fun createFromParcel(parcel: Parcel): Driver {
+            return Driver(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Driver?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

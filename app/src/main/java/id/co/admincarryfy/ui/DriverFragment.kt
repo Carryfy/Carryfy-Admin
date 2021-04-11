@@ -22,7 +22,7 @@ import id.co.admincarryfy.util.Resource
 import id.co.admincarryfy.viewmodel.HomeViewModel
 
 @AndroidEntryPoint
-class DriverFragment : Fragment() {
+class DriverFragment : Fragment(), OnClickDriverByLokasiListener {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var dataBinding: FragmentDriverBinding
@@ -69,10 +69,14 @@ class DriverFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        driverAdapter = DriverAdapter(requireContext())
+        driverAdapter = DriverAdapter(requireContext(), DriverAdapter.driverAll, this)
         dataBinding.rvDriver?.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = driverAdapter
         }
+    }
+
+    override fun onClicDriverListener(driver: Driver) {
+        TODO("Not yet implemented")
     }
 }

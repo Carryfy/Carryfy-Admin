@@ -6,15 +6,13 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import id.co.admincarryfy.data.database.entities.PerjalananEntities
-import id.co.admincarryfy.data.model.Driver
-import id.co.admincarryfy.data.model.Home
-import id.co.admincarryfy.data.model.ResponseItem
-import id.co.admincarryfy.data.model.Value
+import id.co.admincarryfy.data.model.*
 import id.co.admincarryfy.data.repository.DriverRepository
 import id.co.admincarryfy.util.Constant
 import id.co.admincarryfy.util.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 @ActivityRetainedScoped
 class DriverViewModel @ViewModelInject constructor(
@@ -24,6 +22,102 @@ class DriverViewModel @ViewModelInject constructor(
 
     val getPerjalananDatabase: LiveData<List<PerjalananEntities>> = driverRepository.local.getPerjalananDatabase().asLiveData()
     var addDriverRequest: MutableLiveData<Resource<Value>> = MutableLiveData()
+    val getPerjalananRequest: MutableLiveData<Resource<ResponseList<Perjalanan>>> = MutableLiveData()
+    val getDriverByLokasiRequest: MutableLiveData<Resource<ResponseList<Driver>>> = MutableLiveData()
+    val updatePesananUserMutable: MutableLiveData<Resource<Value>> = MutableLiveData()
+
+    fun updatePesananUserData(idPesanan: String, noHpUtama: String) = viewModelScope.launch {
+        updatePesanan(idPesanan, noHpUtama)
+    }
+
+    private suspend fun updatePesanan(idPesanan: String, noHpUtama: String) {
+        updatePesananUserMutable.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.updatePesananUserRequest(idPesanan, noHpUtama)
+                updatePesananUserMutable.value = handleUpdatePesananUserData(response)
+            }catch (e: Exception){
+                updatePesananUserMutable.value = Resource.Error("${e.message}")
+            }
+        }else{
+            updatePesananUserMutable.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    private fun handleUpdatePesananUserData(response: Response<Value>): Resource<Value>? {
+        if (response.isSuccessful){
+            response.body()?.let {
+                val responseBody = response.body()
+                return Resource.Success(responseBody)
+            }
+        }else{
+            val responseBody = response.body()
+            return Resource.Success(responseBody)
+        }
+        return Resource.Error("${response.errorBody()}")
+    }
+
+    fun getDriverByLokasiData(lokPenjemputan: String, lokTujuan: String) = viewModelScope.launch {
+        driverPerjalananByLokasiData(lokPenjemputan, lokTujuan)
+    }
+
+    private suspend fun driverPerjalananByLokasiData(lokPenjemputan: String, lokTujuan: String) {
+        getDriverByLokasiRequest.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.getDriverByLokasi(lokPenjemputan, lokTujuan)
+                getDriverByLokasiRequest.value = handleDriverByLokasiData(response)
+            }catch (e: Exception){
+                getDriverByLokasiRequest.value = Resource.Error("${e.message}")
+            }
+        }else{
+            getDriverByLokasiRequest.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    private fun handleDriverByLokasiData(response: Response<ResponseList<Driver>>): Resource<ResponseList<Driver>>? {
+        if (response.isSuccessful){
+            response.body()?.let {
+                val responseBody = response.body()
+                return Resource.Success(responseBody)
+            }
+        }else{
+            val responseBody = response.body()
+            return Resource.Success(responseBody)
+        }
+        return Resource.Error("${response.errorBody()}")
+    }
+
+    fun getPerjalananData(noHpUtama: String) = viewModelScope.launch {
+        perjalananData(noHpUtama)
+    }
+
+    private suspend fun perjalananData(noHpUtama: String) {
+        getPerjalananRequest.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.getPerjalananRequest(noHpUtama)
+                getPerjalananRequest.value = handlePerjalananData(response)
+            }catch (e: Exception){
+                getPerjalananRequest.value = Resource.Error("${e.message}")
+            }
+        }else{
+            getPerjalananRequest.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    private fun handlePerjalananData(response: Response<ResponseList<Perjalanan>>): Resource<ResponseList<Perjalanan>>? {
+        if (response.isSuccessful){
+            response.body()?.let {
+                val responseBody = response.body()
+                return Resource.Success(responseBody)
+            }
+        }else{
+            val responseBody = response.body()
+            return Resource.Success(responseBody)
+        }
+        return Resource.Error("${response.errorBody()}")
+    }
 
     fun addDriverData(driver: Driver) = viewModelScope.launch {
         driverData(driver)

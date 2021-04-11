@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="data"
+            type="id.co.admincarryfy.data.model.Driver" />
     </data>
 
     <LinearLayout
@@ -71,7 +73,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="Mantap"
+                        android:text="@{data.namaDriver}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -95,7 +97,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="0823971379282"
+                        android:text="@{data.noHpUtama}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -118,7 +120,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="08292918121"
+                        android:text="@{data.noHpCadangan}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -141,7 +143,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="L"
+                        android:text="@{data.jenisKelamin}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -164,7 +166,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="Mantap"
+                        android:text="@{data.noKtpSim}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -187,7 +189,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="Avanza"
+                        android:text="@{data.merkKendaraan}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -210,7 +212,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="Merah"
+                        android:text="@{data.warnaKendaraan}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -233,7 +235,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="D 09912819 DD"
+                        android:text="@{data.platKendaraan}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>
@@ -256,7 +258,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="3"
                         android:layout_height="wrap_content"
-                        android:text="8021212"
+                        android:text="@{data.deposit}"
                         android:fontFamily="@font/nunitosans_regular"
                         android:textSize="16sp"
                         android:textColor="@android:color/black"/>

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import id.co.admincarryfy.R
 import id.co.admincarryfy.data.model.Driver
+import id.co.admincarryfy.data.model.Perjalanan
 import id.co.admincarryfy.databinding.ActivityAddDriverBinding
 import id.co.admincarryfy.ui.adapter.AddPerjalananAdapter
 import id.co.admincarryfy.util.Resource
@@ -77,8 +78,11 @@ class AddDriverActivity : AppCompatActivity() {
 
     private fun loadPerjalanan() {
         driverViewModel.getPerjalananDatabase.observe(this, Observer {
-            Toast.makeText(this, "${it.size}", Toast.LENGTH_SHORT).show()
-            perjalananAdapter.setData(it)
+            val perjalananList = mutableListOf<Perjalanan>()
+            for(perjalanan in it){
+                perjalananList.add(perjalanan.perjalanan)
+            }
+            perjalananAdapter.setData(perjalananList)
         })
     }
 

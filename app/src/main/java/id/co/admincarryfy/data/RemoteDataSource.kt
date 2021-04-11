@@ -40,4 +40,16 @@ class RemoteDataSource @Inject constructor(
         )
     }
 
+    suspend fun getPerjalananRequest(noHpUtama: String): Response<ResponseList<Perjalanan>>{
+        return apiService.getPerjalanan(noHpUtama)
+    }
+
+    suspend fun getDriverByLokasi(lokPenjemputan: String, lokTujuan: String): Response<ResponseList<Driver>>{
+        return apiService.getDriverByLokasi(lokPenjemputan, lokTujuan)
+    }
+
+    suspend fun updatePesananUserRequest(idPesanan: String, noHpUtama: String): Response<Value>{
+        return apiService.updatePesananUser(idPesanan, noHpUtama)
+    }
+
 }

@@ -1,6 +1,7 @@
 package id.co.admincarryfy.ui.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,11 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import id.co.admincarryfy.R
 import id.co.admincarryfy.data.model.Driver
 import id.co.admincarryfy.databinding.ItemDriverBinding
+import id.co.admincarryfy.ui.OnClickDriverByLokasiListener
+import id.co.admincarryfy.ui.driver.DetailDriverActivity
 import id.co.admincarryfy.util.DiffUtilCustom
 
-class DriverAdapter(val context: Context): RecyclerView.Adapter<DriverAdapter.ViewHolder>() {
+class DriverAdapter(val context: Context,val  driverType: Int, val onClickDriverByLokasiListener: OnClickDriverByLokasiListener): RecyclerView.Adapter<DriverAdapter.ViewHolder>() {
 
     private var dataDriverList = emptyList<Driver>()
+
+    companion object{
+        val driverAll = 1
+        val driverByLokasi = 2
+    }
 
     inner class ViewHolder(val binding: ItemDriverBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -28,6 +36,15 @@ class DriverAdapter(val context: Context): RecyclerView.Adapter<DriverAdapter.Vi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val driver = dataDriverList[position]
         holder.binding.driver = driver
+        holder.itemView.setOnClickListener {
+            if(driverType == driverAll) {
+                val intent = Intent(context, DetailDriverActivity::class.java)
+                intent.putExtra("driver", driver)
+                context.startActivity(intent)
+            }else{
+                onClickDriverByLokasiListener.onClicDriverListener(driver)
+            }
+        }
     }
 
     fun setData(newData: List<Driver>){

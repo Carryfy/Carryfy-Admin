@@ -9,12 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import id.co.admincarryfy.R
 import id.co.admincarryfy.data.database.entities.PerjalananEntities
 import id.co.admincarryfy.data.model.Driver
+import id.co.admincarryfy.data.model.Perjalanan
 import id.co.admincarryfy.databinding.ItemTambahPerjalananBinding
 import id.co.admincarryfy.util.DiffUtilCustom
 
 class AddPerjalananAdapter(val context: Context): RecyclerView.Adapter<AddPerjalananAdapter.ViewHolder>() {
 
-    var dataPerjalananList = emptyList<PerjalananEntities>()
+    var dataPerjalananList = emptyList<Perjalanan>()
 
     inner class ViewHolder(val binding: ItemTambahPerjalananBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -28,15 +29,15 @@ class AddPerjalananAdapter(val context: Context): RecyclerView.Adapter<AddPerjal
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val perjalanan = dataPerjalananList[position]
-        val perjalananDriver = perjalanan?.perjalanan?.lokTujuan+" - "+perjalanan?.perjalanan?.lokPenjemputan
-        val jamDriver = perjalanan?.perjalanan?.jamBerangkat+" - "+perjalanan?.perjalanan?.jamSampai
+        val perjalananDriver = perjalanan?.lokTujuan+" - "+perjalanan?.lokPenjemputan
+        val jamDriver = perjalanan?.jamBerangkat+" - "+perjalanan?.jamSampai
         holder.binding.tvPerjalanan.text = perjalananDriver
         holder.binding.tvJam.text = jamDriver
-        holder.binding.tvBiaya.text = perjalanan?.perjalanan?.biaya
-        holder.binding.tvHari.text = perjalanan?.perjalanan?.hariKeberangkatan
+        holder.binding.tvBiaya.text = perjalanan?.biaya
+        holder.binding.tvHari.text = perjalanan?.hariKeberangkatan
     }
 
-    fun setData(newData: List<PerjalananEntities>){
+    fun setData(newData: List<Perjalanan>){
         val diffUtilCustom = DiffUtilCustom(dataPerjalananList, newData)
         val diffUtilResult = DiffUtil.calculateDiff(diffUtilCustom)
         dataPerjalananList = newData

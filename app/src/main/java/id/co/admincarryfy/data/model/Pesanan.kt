@@ -1,6 +1,9 @@
 package id.co.admincarryfy.data.model
 
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import id.co.admincarryfy.util.DateConverter
+import java.io.Serializable
 import java.util.*
 
 data class Pesanan (
@@ -31,12 +34,13 @@ data class Pesanan (
     @SerializedName("no_hp_utama")
     var noHpUtama: String ?= "",
 
-    @SerializedName("tgl_pesanan")
-    var tglPesanan: Date ?= Date(),
+//    @TypeConverters(DateConverter::class)
+//    @SerializedName("tgl_pesanan")
+//    var tglPesanan: Date ?= Date(),
 
     @SerializedName("status_pesanan")
     var statusPesanan: String ?= "",
 
     @SerializedName("keberangakatan")
     var keberangkatan: String ?= ""
-)
+): Serializable

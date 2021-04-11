@@ -42,5 +42,29 @@ interface ApiService {
         @Field("biaya") biaya: String
     ): Response<Value>
 
+    @GET("tampil_perjalanan.php")
+    suspend fun getPerjalanan(
+        @Query("no_hp_utama") noHpUtama: String
+    ): Response<ResponseList<Perjalanan>>
+
+    @FormUrlEncoded
+    @POST("update_saldo_driver.php")
+    suspend fun updateSaldoDriver(
+        @Field("id_driver_travel") idDriver:String,
+        @Field("saldo") saldo: String
+    ): Response<Value>
+
+    @GET("tampil_driver_by_lokasi.php")
+    suspend fun getDriverByLokasi(
+        @Query("lok_penjemputan") lokPenjemputan: String,
+        @Query("lok_tujuan") lokTujuan: String
+    ): Response<ResponseList<Driver>>
+
+    @FormUrlEncoded
+    @POST("update_pesanan_user.php")
+    suspend fun updatePesananUser(
+        @Field("id_pesanan") idPesanan: String,
+        @Field("no_hp_utama") noHpUtama: String
+    ): Response<Value>
 
 }

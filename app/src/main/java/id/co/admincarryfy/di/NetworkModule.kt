@@ -1,5 +1,6 @@
 package id.co.admincarryfy.di
 
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,20 +39,16 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideConverterFactory(): GsonConverterFactory {
-        return GsonConverterFactory.create()
-    }
-
-    @Singleton
-    @Provides
     fun provideRetrofitInstance(
-            okHttpClient: OkHttpClient,
-            gsonConverterFactory: GsonConverterFactory
+            okHttpClient: OkHttpClient
     ): Retrofit {
+        val gson = GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .create()
         return Retrofit.Builder()
                 .baseUrl(Constant.BASE_URL)
                 .client(okHttpClient)
-                .addConverterFactory(gsonConverterFactory)
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
     }
 
