@@ -43,7 +43,7 @@ object NetworkModule {
             okHttpClient: OkHttpClient
     ): Retrofit {
         val gson = GsonBuilder()
-                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create()
         return Retrofit.Builder()
                 .baseUrl(Constant.BASE_URL)

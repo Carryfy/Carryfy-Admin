@@ -28,6 +28,7 @@
                 android:padding="10dp">
 
                 <ImageView
+                    android:id="@+id/iv_back"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginRight="10dp"
@@ -39,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunitosans_bold"
-                    android:text="Tambah Driver"
+                    android:text="Profil"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -49,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_simpan"
+            app:layout_constraintBottom_toTopOf="@+id/tv_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_toolbar">
@@ -62,49 +63,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
-
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="24dp">
-
-                        <TextView
-                            android:id="@+id/tv_foto_produk"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunitosans_bold"
-                            android:text="Perjalanan"
-                            android:textColor="@android:color/black"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_tambah_perjalanan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:background="@drawable/bg_status"
-                            android:backgroundTint="@color/teal_200"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:text="Tambah Perjalanan"
-                            android:textColor="@android:color/white" />
-                    </RelativeLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_perjalanan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_foto_produk" />
 
                     <TextView
                         android:id="@+id/textView19"
@@ -366,13 +324,13 @@
 
 
         <TextView
-            android:id="@+id/tv_simpan"
+            android:id="@+id/tv_edit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/purple_200"
             android:fontFamily="@font/nunitosans_bold"
             android:gravity="center"
-            android:text="Simpan"
+            android:text="Edit"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent" />

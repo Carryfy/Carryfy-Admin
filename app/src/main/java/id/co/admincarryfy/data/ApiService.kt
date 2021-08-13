@@ -30,6 +30,11 @@ interface ApiService {
         @Body driver: Driver
     ): Response<Value>
 
+    @POST("edit_data_driver.php")
+    suspend fun editDriverRequest(
+        @Body driver: Driver
+    ): Response<Value>
+
     @FormUrlEncoded
     @POST("tambah_perjalanan_driver.php")
     suspend fun addPerjalananDriver(
@@ -66,5 +71,27 @@ interface ApiService {
         @Field("id_pesanan") idPesanan: String,
         @Field("no_hp_utama") noHpUtama: String
     ): Response<Value>
+
+    @FormUrlEncoded
+    @POST("edit_perjalanan_driver.php")
+    suspend fun editPerjalananDriver(
+        @Field("id_detail_rute_driver") id_detail_rute_driver: String,
+        @Field("lok_penjemputan") lok_penjemputan: String,
+        @Field("lok_tujuan") lok_tujuan: String,
+        @Field("jam_berangkat") jam_berangkat: String,
+        @Field("jam_sampai") jam_sampai: String,
+        @Field("hari_keberangkatan") hari_keberangkatan: String,
+        @Field("biaya") biaya: String
+    ): Response<Value>
+
+
+    @GET("tampil_riwayat_driver.php")
+    suspend fun getRiwayatDriver(
+        @Query("no_hp_utama") noHpUtama: String): Response<ResponseList<Riwayat>>
+
+    @GET("tampil_lokasi_driver.php")
+    suspend fun getLokasi(
+        @Query("no_hp_utama") noHpUtama: String
+    ): Response<ResponseList<Lokasi>>
 
 }

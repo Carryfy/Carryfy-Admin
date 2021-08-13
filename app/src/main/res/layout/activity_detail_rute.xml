@@ -39,7 +39,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunitosans_bold"
-                    android:text="Tambah Driver"
+                    android:text="Rute Perjalanan"
                     android:textColor="@android:color/black"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -49,8 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_simpan"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_edit"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv_toolbar">
 
@@ -63,64 +63,21 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="24dp">
-
-                        <TextView
-                            android:id="@+id/tv_foto_produk"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nunitosans_bold"
-                            android:text="Perjalanan"
-                            android:textColor="@android:color/black"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                        <TextView
-                            android:id="@+id/tv_tambah_perjalanan"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="16dp"
-                            android:layout_marginRight="16dp"
-                            android:background="@drawable/bg_status"
-                            android:backgroundTint="@color/teal_200"
-                            android:paddingLeft="20dp"
-                            android:paddingRight="20dp"
-                            android:text="Tambah Perjalanan"
-                            android:textColor="@android:color/white" />
-                    </RelativeLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_perjalanan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/tv_foto_produk" />
-
                     <TextView
-                        android:id="@+id/textView19"
+                        android:id="@+id/tv_lokasi_penjemputan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:text="Nama"
+                        android:text="Lokasi"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/sp_kategori" />
 
                     <EditText
-                        android:id="@+id/et_nama_driver"
+                        android:id="@+id/et_lokasi_penjemputan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -142,14 +99,14 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:text="No Hp Utama"
+                        android:text="Lokasi Tujuan"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
 
 
                     <EditText
-                        android:id="@+id/et_no_hp_utama"
+                        android:id="@+id/et_lokasi_tujuan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -171,13 +128,13 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:text="No Hp Cadangan"
+                        android:text="Jam Berangkat"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/et_deskripsi" />
 
                     <EditText
-                        android:id="@+id/et_no_hp_cadangan"
+                        android:id="@+id/et_jam_berangkat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -198,14 +155,14 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:text="Jenis Kelamin"
+                        android:text="Jam Sampai"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
 
 
                     <EditText
-                        android:id="@+id/et_jenis_kelamin"
+                        android:id="@+id/et_jam_sampai"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -227,14 +184,14 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:text="KTP/SIM"
+                        android:text="Hari Keberangkatan"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
 
 
                     <EditText
-                        android:id="@+id/et_ktp_sim"
+                        android:id="@+id/et_hari_keberangkatan"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -255,14 +212,14 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/nunitosans_bold"
-                        android:text="Merk Kendaraan"
+                        android:text="Biaya"
                         android:textColor="@android:color/black"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
 
 
                     <EditText
-                        android:id="@+id/et_merk_kendaraan"
+                        android:id="@+id/et_biaya"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -276,103 +233,19 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/nunitosans_bold"
-                        android:text="Warna Kendaraan"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
-
-
-                    <EditText
-                        android:id="@+id/et_warna_kendaraan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@drawable/bg_input"
-                        android:padding="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/nunitosans_bold"
-                        android:text="Plat Kendaraan"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
-
-
-                    <EditText
-                        android:id="@+id/et_plat_kendaraan"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:background="@drawable/bg_input"
-                        android:padding="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView27" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/nunitosans_bold"
-                        android:text="Deposit"
-                        android:textColor="@android:color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/et_alamat" />
-
-
-                    <EditText
-                        android:id="@+id/et_deposit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="80dp"
-                        android:background="@drawable/bg_input"
-                        android:padding="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView27" />
                 </LinearLayout>
             </RelativeLayout>
         </ScrollView>
 
 
         <TextView
-            android:id="@+id/tv_simpan"
+            android:id="@+id/tv_edit"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/purple_200"
             android:fontFamily="@font/nunitosans_bold"
             android:gravity="center"
-            android:text="Simpan"
+            android:text="Edit"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent" />

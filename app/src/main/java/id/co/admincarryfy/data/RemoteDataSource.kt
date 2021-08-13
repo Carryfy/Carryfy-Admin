@@ -28,6 +28,18 @@ class RemoteDataSource @Inject constructor(
         return apiService.addDriverRequest(driver)
     }
 
+    suspend fun editPerjalanan(perjalanan: Perjalanan): Response<Value>{
+        return apiService.editPerjalananDriver(
+            perjalanan.idDetailRuteDriver!!,
+            perjalanan.lokPenjemputan!!,
+            perjalanan.lokTujuan!!,
+            perjalanan.jamBerangkat!!,
+            perjalanan.jamSampai!!,
+            perjalanan.hariKeberangkatan!!,
+            perjalanan.biaya!!
+        )
+    }
+
     suspend fun addPerjalananDriverRequest(noHpUtama: String, perjalanan: Perjalanan): Response<Value>{
         return apiService.addPerjalananDriver(
                 noHpUtama,
@@ -50,6 +62,22 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun updatePesananUserRequest(idPesanan: String, noHpUtama: String): Response<Value>{
         return apiService.updatePesananUser(idPesanan, noHpUtama)
+    }
+
+    suspend fun editDataDriver(driver: Driver):  Response<Value>{
+        return apiService.editDriverRequest(driver)
+    }
+
+    suspend fun getRiwayatDriver(noHpUtama: String): Response<ResponseList<Riwayat>>{
+        return apiService.getRiwayatDriver(noHpUtama)
+    }
+
+    suspend fun updateSaldoDriver(idDriver: String, saldo:String): Response<Value>{
+        return apiService.updateSaldoDriver(idDriver, saldo)
+    }
+
+    suspend fun getLokasiDriver(noHpUtama: String): Response<ResponseList<Lokasi>>{
+        return apiService.getLokasi(noHpUtama)
     }
 
 }

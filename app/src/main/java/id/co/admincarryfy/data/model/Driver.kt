@@ -5,6 +5,8 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Driver (
+    @SerializedName("id_driver_travel")
+    var idDriverTravel: String ?= "",
     @SerializedName("nama_driver")
     var namaDriver: String ?= "",
     @SerializedName("no_hp_utama")
@@ -31,7 +33,8 @@ data class Driver (
     var deposit: String ?= ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
-            parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
             parcel.readString(),
             parcel.readString(),
             parcel.readString(),
@@ -46,6 +49,7 @@ data class Driver (
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(idDriverTravel)
         parcel.writeString(namaDriver)
         parcel.writeString(noHpUtama)
         parcel.writeString(noHpCadangan)

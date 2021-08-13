@@ -25,6 +25,128 @@ class DriverViewModel @ViewModelInject constructor(
     val getPerjalananRequest: MutableLiveData<Resource<ResponseList<Perjalanan>>> = MutableLiveData()
     val getDriverByLokasiRequest: MutableLiveData<Resource<ResponseList<Driver>>> = MutableLiveData()
     val updatePesananUserMutable: MutableLiveData<Resource<Value>> = MutableLiveData()
+    val editDataDriverMutable: MutableLiveData<Resource<Value>> = MutableLiveData()
+    val editRuteDriverMutable: MutableLiveData<Resource<Value>> = MutableLiveData()
+    val riwayatDriverMutable: MutableLiveData<Resource<ResponseList<Riwayat>>> = MutableLiveData()
+    val updateSaldoMutable: MutableLiveData<Resource<Value>> = MutableLiveData()
+    val getLokasiMutable: MutableLiveData<Resource<ResponseList<Lokasi>>> = MutableLiveData()
+
+    fun getLokasi(noHpUtama: String) = viewModelScope.launch {
+        getLokasiDriver(noHpUtama)
+    }
+
+    private suspend fun getLokasiDriver(noHpUtama: String) {
+        getLokasiMutable.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.getLokasiDriver(noHpUtama)
+                getLokasiMutable.value = handleLokasiDriver(response)
+            }catch (e: Exception){
+                getLokasiMutable.value = Resource.Error("${e.message}")
+            }
+        }else{
+            getLokasiMutable.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    private fun handleLokasiDriver(response: Response<ResponseList<Lokasi>>): Resource<ResponseList<Lokasi>>? {
+        if (response.isSuccessful){
+            response.body()?.let {
+                val responseBody = response.body()
+                return Resource.Success(responseBody)
+            }
+        }else{
+            val responseBody = response.body()
+            return Resource.Success(responseBody)
+        }
+        return Resource.Error("${response.errorBody()}")
+    }
+
+    fun updateSaldo(idDriver: String, saldo: String) = viewModelScope.launch {
+        updateSaldoriver(idDriver, saldo)
+    }
+
+    private suspend fun updateSaldoriver(idDriver: String, saldo: String) {
+        updateSaldoMutable.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.updateSaldoDriver(idDriver, saldo)
+                updateSaldoMutable.value = handleUpdatePesananUserData(response)
+            }catch (e: Exception){
+                updateSaldoMutable.value = Resource.Error("${e.message}")
+            }
+        }else{
+            updateSaldoMutable.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    fun riwayatDriver(noHpUtama: String) = viewModelScope.launch {
+        getRiwayatDriver(noHpUtama)
+    }
+
+    private suspend fun getRiwayatDriver(noHpUtama: String) {
+        riwayatDriverMutable.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.getRiwayatDriver(noHpUtama)
+                riwayatDriverMutable.value = handleGetRiwayatDriver(response)
+            }catch (e: Exception){
+                riwayatDriverMutable.value = Resource.Error("${e.message}")
+            }
+        }else{
+            riwayatDriverMutable.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    private fun handleGetRiwayatDriver(response: Response<ResponseList<Riwayat>>): Resource<ResponseList<Riwayat>>? {
+        if (response.isSuccessful){
+            response.body()?.let {
+                val responseBody = response.body()
+                return Resource.Success(responseBody)
+            }
+        }else{
+            val responseBody = response.body()
+            return Resource.Error(response.errorBody().toString())
+        }
+        return Resource.Error("${response.errorBody()}")
+    }
+
+
+    fun editRuteDriver(perjalanan: Perjalanan) = viewModelScope.launch {
+        editRute(perjalanan)
+    }
+
+    private suspend fun editRute(perjalanan: Perjalanan){
+        editRuteDriverMutable.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.editPerjalanan(perjalanan)
+                editRuteDriverMutable.value = handleUpdatePesananUserData(response)
+            }catch (e: Exception){
+                editRuteDriverMutable.value = Resource.Error("${e.message}")
+            }
+        }else{
+            editRuteDriverMutable.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
+
+    fun editDataDriver(driver: Driver) = viewModelScope.launch {
+        editDriver(driver)
+    }
+
+    private suspend fun editDriver(driver: Driver) {
+        editDataDriverMutable.value = Resource.Loading()
+        if(Constant.isConnectionInternet(getApplication())){
+            try{
+                val response = driverRepository.remote.editDataDriver(driver)
+                editDataDriverMutable.value = handleUpdatePesananUserData(response)
+            }catch (e: Exception){
+                editDataDriverMutable.value = Resource.Error("${e.message}")
+            }
+        }else{
+            editDataDriverMutable.value = Resource.Error("Tidak ada koneksi internet")
+        }
+    }
 
     fun updatePesananUserData(idPesanan: String, noHpUtama: String) = viewModelScope.launch {
         updatePesanan(idPesanan, noHpUtama)
